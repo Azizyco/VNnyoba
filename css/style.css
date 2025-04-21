@@ -1,0 +1,117 @@
+/* Global reset dan gaya dasar */
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    font-family: 'Arial', sans-serif;
+    background-color: #121212;
+    color: #fff;
+    overflow: hidden;
+}
+
+/* Latar belakang */
+body {
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Container utama visual novel */
+#monogatari {
+    width: 100%;
+    max-width: 1280px;
+    height: 100%;
+    position: relative;
+    overflow: hidden;
+    background: rgba(0, 0, 0, 0.5);
+}
+
+/* Gaya teks dialog */
+.text-box {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    padding: 20px;
+    background: rgba(0, 0, 0, 0.7);
+    font-size: 1.2rem;
+    line-height: 1.6;
+    border-top: 3px solid #444;
+}
+
+/* Gaya nama karakter */
+.character-name {
+    font-weight: bold;
+    color: #f5f6fa;
+    margin-bottom: 5px;
+    font-size: 1.4rem;
+}
+
+/* Gaya karakter sprite */
+.sprite {
+    position: absolute;
+    bottom: 0;
+    max-height: 90%;
+    width: auto;
+    transition: transform 0.5s, opacity 0.5s;
+}
+
+/* Posisi karakter kiri dan kanan */
+.sprite[data-position="left"] {
+    left: 10%;
+}
+
+.sprite[data-position="right"] {
+    right: 10%;
+}
+
+/* Animasi fadeIn sederhana */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+.fadeIn {
+    animation: fadeIn 0.8s ease;
+}
+
+/* Responsif untuk tablet dan mobile */
+@media (max-width: 768px) {
+    .text-box {
+        font-size: 1rem;
+        padding: 15px;
+    }
+    .character-name {
+        font-size: 1.2rem;
+    }
+    .sprite[data-position="left"] {
+        left: 5%;
+    }
+    .sprite[data-position="right"] {
+        right: 5%;
+    }
+}
+
+@media (max-width: 480px) {
+    .text-box {
+        font-size: 0.9rem;
+        padding: 10px;
+    }
+    .character-name {
+        font-size: 1.1rem;
+    }
+    .sprite {
+        max-height: 80%;
+    }
+}
