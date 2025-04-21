@@ -7,15 +7,34 @@
   <link rel="stylesheet" href="style.css"/>
 </head>
 <body>
-  <audio id="bgm" src="audio/bgm.mp3" autoplay loop></audio>
+  <!-- Audio dimulai lewat interaksi pengguna jika autoplay dicegah -->
+  <audio id="bgm" src="audio/bgm.mp3" loop></audio>
+
   <div class="game-container">
     <img id="bg" src="images/yaya (11).png" class="background" alt="Background" />
-    <img id="character" class="character fade" src="images/fern.jpg" alt="" />
+    <img id="character" class="character fade" src="images/fern.jpg" alt="Karakter Fern" />
     <div class="text-box fade">
       <div id="dialogue" class="typewriter"></div>
       <div class="choices" id="choices"></div>
     </div>
   </div>
-  <script src="script.js"></script>
+
+  <script>
+    // Deteksi klik pertama user untuk mulai BGM (bypass autoplay block di browser modern)
+    window.addEventListener("click", () => {
+      const bgm = document.getElementById("bgm");
+      if (bgm.paused) {
+        bgm.volume = 0.4;
+        bgm.play().catch(e => console.log("Autoplay ditolak:", e));
+      }
+    }, { once: true }); // hanya sekali saja
+
+    // Load sisa script setelah audio siap
+    window.addEventListener("DOMContentLoaded", () => {
+      const script = document.createElement("script");
+      script.src = "script.js";
+      document.body.appendChild(script);
+    });
+  </script>
 </body>
 </html>
